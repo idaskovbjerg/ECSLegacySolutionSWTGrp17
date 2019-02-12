@@ -25,5 +25,12 @@ namespace ECS.Legacy.Test.Unit
             Assert.That(result, Is.EqualTo(5));
         }
 
+        [Test]
+        public void ECS_RunSelfTest_ResultIsTrue()
+        {
+            var result = _uut.RunSelfTest();
+            Assert.That(result, Is.EqualTo(true));
+        }
+
     }
 }
