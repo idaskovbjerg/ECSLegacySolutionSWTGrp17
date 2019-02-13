@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ECS.Legacy.Interfaces;
 
-namespace ECS.Legacy.Test.Unit
+namespace ECS.Legacy.Test.Unit.Fakes
 {
     public class FakeHeater : IHeater
     {

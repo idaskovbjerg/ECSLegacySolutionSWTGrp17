@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ECS.Legacy.Interfaces;
+﻿using ECS.Legacy.Interfaces;
 
-
-namespace ECS.Legacy.Test.Unit
+namespace ECS.Legacy.Test.Unit.Fakes
 {
     public class FakeTempSensor : ITempSensor
     {
