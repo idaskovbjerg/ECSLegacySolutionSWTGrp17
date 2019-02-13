@@ -42,6 +42,49 @@ namespace ECS.Legacy.Test.Unit
             _fakeTemp.Temp = 20;
             Assert.That(_uut.GetCurTemp(), Is.EqualTo(20));
         }
-       
+
+        [Test]
+        public void ECS_Regulate_CallHeaterOff()
+        {
+            _fakeTemp.Temp = 10; 
+            _uut.Regulate();
+            Assert.That(_fakeHeater.TurnOffCounter, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ECS_Regulate_CallHeaterOn()
+        {
+            _fakeTemp.Temp = 2;
+            _uut.Regulate();
+            Assert.That(_fakeHeater.TurnOnCounter, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ECS_Regulate_CallHeaterOffThreeTimes()
+        {
+            _fakeTemp.Temp = 10;
+            _uut.Regulate();
+            _uut.Regulate();
+            _uut.Regulate();
+            Assert.That(_fakeHeater.TurnOffCounter, Is.EqualTo(3));
+        }
+
+
+        [Test]
+        public void ECS_Regulate_CallHeaterOffAndOnTwoTimes()
+        {
+            _fakeTemp.Temp = 10;
+            _uut.Regulate();
+            _fakeTemp.Temp = 2; 
+            _uut.Regulate();
+
+            _fakeTemp.Temp = 10;
+            _uut.Regulate();
+            _fakeTemp.Temp = 2;
+            _uut.Regulate();
+
+            Assert.That(_fakeHeater.TurnOffCounter, Is.EqualTo(2));
+            Assert.That(_fakeHeater.TurnOnCounter, Is.EqualTo(2));
+        }
     }
 }
