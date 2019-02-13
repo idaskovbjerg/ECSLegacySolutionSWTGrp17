@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ECS.Legacy.Test.Unit.Fakes;
 using NUnit.Framework;
 
 namespace ECS.Legacy.Test.Unit
@@ -11,10 +12,14 @@ namespace ECS.Legacy.Test.Unit
     public class ECSTest
     {
         private ECS _uut;
+        private FakeTempSensor _fakeTemp;
+        private FakeHeater _fakeHeater;
         [SetUp]
         public void SetUpTest()
         {
-            _uut = new ECS(5, new FakeTempSensor(), new FakeHeater());
+            _fakeTemp = new FakeTempSensor();
+            _fakeHeater = new FakeHeater();
+            _uut = new ECS(5, _fakeTemp, _fakeHeater);
         }
 
         [Test]
@@ -31,8 +36,12 @@ namespace ECS.Legacy.Test.Unit
             Assert.That(result, Is.EqualTo(true));
         }
 
-
-        
-
+        [Test]
+        public void ECS_GetCurTemp_ResultEqualsTwenty()
+        {
+            _fakeTemp.Temp = 20;
+            Assert.That(_uut.GetCurTemp(), Is.EqualTo(20));
+        }
+       
     }
 }
