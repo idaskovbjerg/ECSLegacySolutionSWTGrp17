@@ -5,8 +5,8 @@ namespace ECS.Legacy
     public class ECS
     {
         private int _threshold;
-        private readonly Interfaces.ITempSensor _tempSensor;
-        private readonly Interfaces.IHeater _heater;
+        private readonly ITempSensor _tempSensor;
+        private readonly IHeater _heater;
 
         public ECS(int thr, ITempSensor tempSensor, IHeater heater)
         {
@@ -22,7 +22,6 @@ namespace ECS.Legacy
                 _heater.TurnOn();
             else
                 _heater.TurnOff();
-
         }
 
         public void SetThreshold(int thr)
