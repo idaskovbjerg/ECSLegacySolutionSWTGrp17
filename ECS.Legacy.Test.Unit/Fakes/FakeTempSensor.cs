@@ -5,13 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using ECS.Legacy.Interfaces;
 
-namespace ECS.Legacy.Fakes
+
+namespace ECS.Legacy.Test.Unit
 {
     public class FakeTempSensor : ITempSensor
     {
+        public int Temp { get; set; }
+
         public int GetTemp()
         {
-            return 1;
+            return Temp;
         }
 
         public bool RunSelfTest()

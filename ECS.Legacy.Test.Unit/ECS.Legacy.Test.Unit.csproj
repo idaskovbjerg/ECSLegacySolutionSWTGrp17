@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ECSTest.cs" />
+    <Compile Include="Fakes\FakeHeater.cs" />
+    <Compile Include="Fakes\FakeTempSensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
