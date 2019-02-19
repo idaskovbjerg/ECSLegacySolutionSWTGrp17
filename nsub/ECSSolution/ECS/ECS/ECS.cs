@@ -75,6 +75,9 @@ namespace ECS
             }
         }
 
-        
+        public bool RunSelfTest()
+        {
+            return _tempSensor.RunSelfTest() && _heater.RunSelfTest() && _window.RunSelfTest();
+        }
     }
 }

@@ -13,6 +13,11 @@
         {
             return Temp;
         }
+
+        public bool RunSelfTest()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
     internal class FakeHeater : IHeater
@@ -37,6 +42,11 @@
         {
             ++TurnOffCalledTimes;
         }
+
+        public bool RunSelfTest()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 
@@ -59,6 +69,11 @@
         public void Open()
         {
             ++OpenCalledTimes;
+        }
+
+        public bool RunSelfTest()
+        {
+            throw new System.NotImplementedException();
         }
     }
 

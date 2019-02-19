@@ -1,4 +1,5 @@
 ﻿using System;
+using NSubstitute;
 using NUnit.Framework;
 
 
@@ -12,16 +13,22 @@ namespace ECS.Test.Unit
         private FakeHeater _fakeHeater;
         private ECS _uut;
         private FakeWindow _fakeWindow;
+        private IHeater _heater;
+        private ITempSensor _tempSensor;
+        private IWindow _window;
 
         [SetUp]
         public void Setup()
         {
             // Create the fake stubs and mocks
-            _fakeHeater = new FakeHeater();
-            _fakeTempSensor = new FakeTempSensor();
-            _fakeWindow = new FakeWindow();
+            //_fakeHeater = new FakeHeater();
+            //_fakeTempSensor = new FakeTempSensor();
+            //_fakeWindow = new FakeWindow();
+            _heater = Substitute.For<IHeater>();
+            _tempSensor = Substitute.For<ITempSensor>();
+            _window = Substitute.For<IWindow>();
             // Inject them into the uut via the constructor
-            _uut = new ECS(_fakeTempSensor, _fakeHeater, _fakeWindow, 25, 28);
+            _uut = new ECS(_tempSensor, _heater, _window, 25, 28);
         }
 
         #region Threshold tests
@@ -213,5 +220,27 @@ namespace ECS.Test.Unit
         #endregion
 
         #endregion
+        /// <summary>
+        /// Tests using NSubstitute
+        /// </summary>
+        [Test]
+        public void ECS_RunSelfTest_TempSensorFails_SelfTestFails()
+        {
+            _tempSensor.RunSelfTest().Returns(false);
+            _heater.RunSelfTest().Returns(true);
+            _window.RunSelfTest().Returns(true);
+            Assert.IsFalse(_uut.RunSelfTest());
+        }
+
+        /// <summary>
+        /// Its getting hot in here
+        /// </summary>
+        [Test]
+        public void ECS_Regulate_TempBelowThreshold_HeaterTurnedOn()
+        {
+            _tempSensor.GetTemp().Returns(_uut.LowerTemperatureThreshold - 10);
+            _uut.Regulate();
+            _heater.Received(1).TurnOn();
+        }
     }
 }

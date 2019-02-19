@@ -5,5 +5,6 @@
     {
         void Close();
         void Open();
+        bool RunSelfTest();
     }
 }

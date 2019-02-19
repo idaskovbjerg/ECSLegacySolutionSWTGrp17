@@ -7,5 +7,7 @@ namespace ECS
     {
         void TurnOn();
         void TurnOff();
+
+        bool RunSelfTest();
     }
 }
