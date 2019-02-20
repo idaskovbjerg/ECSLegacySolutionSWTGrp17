@@ -21,9 +21,9 @@ namespace ECS.Test.Unit
         public void Setup()
         {
             // Create the fake stubs and mocks
-            //_fakeHeater = new FakeHeater();
-            //_fakeTempSensor = new FakeTempSensor();
-            //_fakeWindow = new FakeWindow();
+            _fakeHeater = new FakeHeater();
+            _fakeTempSensor = new FakeTempSensor();
+            _fakeWindow = new FakeWindow();
             _heater = Substitute.For<IHeater>();
             _tempSensor = Substitute.For<ITempSensor>();
             _window = Substitute.For<IWindow>();
