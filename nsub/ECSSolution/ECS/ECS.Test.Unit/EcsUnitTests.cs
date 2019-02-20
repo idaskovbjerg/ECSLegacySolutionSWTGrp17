@@ -40,7 +40,7 @@ namespace ECS.Test.Unit
         {
             // Check that it doesn't throw
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uutFakes.UpperTemperatureThreshold = 27; }, Throws.Nothing);
+            Assert.That(() => { _uut.UpperTemperatureThreshold = 27; }, Throws.Nothing);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace ECS.Test.Unit
         {
             // Check that it doesn't throw 
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uutFakes.LowerTemperatureThreshold = 26; }, Throws.Nothing);
+            Assert.That(() => { _uut.LowerTemperatureThreshold = 26; }, Throws.Nothing);
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace ECS.Test.Unit
         {
             // Check that it doesn't throw when they are equal
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uutFakes.UpperTemperatureThreshold = _uutFakes.LowerTemperatureThreshold; }, Throws.Nothing);
+            Assert.That(() => { _uut.UpperTemperatureThreshold = _uut.LowerTemperatureThreshold; }, Throws.Nothing);
         }
 
         [Test]
@@ -64,22 +64,22 @@ namespace ECS.Test.Unit
         {
             // Check that it doesn't throw when they are equal
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uutFakes.LowerTemperatureThreshold = _uutFakes.UpperTemperatureThreshold; }, Throws.Nothing);
+            Assert.That(() => { _uut.LowerTemperatureThreshold = _uut.UpperTemperatureThreshold; }, Throws.Nothing);
         }
 
-
+        [Test]
         public void Thresholds_InvalidUpperTemperatureThresholdSet_ArgumentExceptionThrown()
         {
             // Check that it throws when upper is illegal
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uutFakes.UpperTemperatureThreshold = 24; }, Throws.TypeOf<ArgumentException>());
+            Assert.That(() => { _uut.UpperTemperatureThreshold = 24; }, Throws.TypeOf<ArgumentException>());
         }
-
+        [Test]
         public void Thresholds_InvalidLowerTemperatureThresholdSet_ArgumentExceptionThrown()
         {
             // Check that it throws when lower is illegal
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uutFakes.LowerTemperatureThreshold = 29; }, Throws.TypeOf<ArgumentException>());
+            Assert.That(() => { _uut.LowerTemperatureThreshold = 29; }, Throws.TypeOf<ArgumentException>());
         }
 
         #endregion
