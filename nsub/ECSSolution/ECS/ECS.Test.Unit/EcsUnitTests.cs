@@ -12,6 +12,7 @@ namespace ECS.Test.Unit
         private FakeTempSensor _fakeTempSensor;
         private FakeHeater _fakeHeater;
         private ECS _uut;
+        private ECS _uutFakes;
         private FakeWindow _fakeWindow;
         private IHeater _heater;
         private ITempSensor _tempSensor;
@@ -29,6 +30,7 @@ namespace ECS.Test.Unit
             _window = Substitute.For<IWindow>();
             // Inject them into the uut via the constructor
             _uut = new ECS(_tempSensor, _heater, _window, 25, 28);
+            _uutFakes = new ECS(_fakeTempSensor,_fakeHeater,_fakeWindow,25,28);
         }
 
         #region Threshold tests
@@ -38,7 +40,7 @@ namespace ECS.Test.Unit
         {
             // Check that it doesn't throw
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uut.UpperTemperatureThreshold = 27; }, Throws.Nothing);
+            Assert.That(() => { _uutFakes.UpperTemperatureThreshold = 27; }, Throws.Nothing);
         }
 
         [Test]
@@ -46,7 +48,7 @@ namespace ECS.Test.Unit
         {
             // Check that it doesn't throw 
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uut.LowerTemperatureThreshold = 26; }, Throws.Nothing);
+            Assert.That(() => { _uutFakes.LowerTemperatureThreshold = 26; }, Throws.Nothing);
         }
 
         [Test]
@@ -54,7 +56,7 @@ namespace ECS.Test.Unit
         {
             // Check that it doesn't throw when they are equal
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uut.UpperTemperatureThreshold = _uut.LowerTemperatureThreshold; }, Throws.Nothing);
+            Assert.That(() => { _uutFakes.UpperTemperatureThreshold = _uutFakes.LowerTemperatureThreshold; }, Throws.Nothing);
         }
 
         [Test]
@@ -62,7 +64,7 @@ namespace ECS.Test.Unit
         {
             // Check that it doesn't throw when they are equal
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uut.LowerTemperatureThreshold = _uut.UpperTemperatureThreshold; }, Throws.Nothing);
+            Assert.That(() => { _uutFakes.LowerTemperatureThreshold = _uutFakes.UpperTemperatureThreshold; }, Throws.Nothing);
         }
 
 
@@ -70,14 +72,14 @@ namespace ECS.Test.Unit
         {
             // Check that it throws when upper is illegal
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uut.UpperTemperatureThreshold = 24; }, Throws.TypeOf<ArgumentException>());
+            Assert.That(() => { _uutFakes.UpperTemperatureThreshold = 24; }, Throws.TypeOf<ArgumentException>());
         }
 
         public void Thresholds_InvalidLowerTemperatureThresholdSet_ArgumentExceptionThrown()
         {
             // Check that it throws when lower is illegal
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uut.LowerTemperatureThreshold = 29; }, Throws.TypeOf<ArgumentException>());
+            Assert.That(() => { _uutFakes.LowerTemperatureThreshold = 29; }, Throws.TypeOf<ArgumentException>());
         }
 
         #endregion
@@ -92,7 +94,7 @@ namespace ECS.Test.Unit
             // Setup stub with desired response
             _fakeTempSensor.Temp = 20;
             // Act
-            _uut.Regulate();
+            _uutFakes.Regulate();
 
             // Assert on the mock - was the heater called correctly
             Assert.That(_fakeHeater.TurnOnCalledTimes, Is.EqualTo(1));
@@ -105,7 +107,7 @@ namespace ECS.Test.Unit
             // Setup stub with desired response
             _fakeTempSensor.Temp = 20;
             // Act
-            _uut.Regulate();
+            _uutFakes.Regulate();
 
             // Assert on the mock - was the window called correctly
             Assert.That(_fakeWindow.CloseCalledTimes, Is.EqualTo(1));
@@ -121,7 +123,7 @@ namespace ECS.Test.Unit
             // Setup the stub with desired response
             _fakeTempSensor.Temp = 25;
             // Act
-            _uut.Regulate();
+            _uutFakes.Regulate();
 
             // Assert on the mock - was the heater called correctly
             Assert.That(_fakeHeater.TurnOffCalledTimes, Is.EqualTo(1));
@@ -133,7 +135,7 @@ namespace ECS.Test.Unit
             // Setup the stub with desired response
             _fakeTempSensor.Temp = 25;
             // Act
-            _uut.Regulate();
+            _uutFakes.Regulate();
 
             // Assert on the mock - was the window called correctly
             Assert.That(_fakeWindow.CloseCalledTimes, Is.EqualTo(1));
@@ -148,7 +150,7 @@ namespace ECS.Test.Unit
         {
             // Setup the stub with desired response
             _fakeTempSensor.Temp = 27;
-            _uut.Regulate();
+            _uutFakes.Regulate();
 
             // Assert on the mock - was the heater called correctly
             Assert.That(_fakeHeater.TurnOnCalledTimes, Is.EqualTo(0));
@@ -159,7 +161,7 @@ namespace ECS.Test.Unit
         {
             // Setup the stub with desired response
             _fakeTempSensor.Temp = 27;
-            _uut.Regulate();
+            _uutFakes.Regulate();
 
             // Assert on the mock - was the window called correctly
             Assert.That(_fakeWindow.CloseCalledTimes, Is.EqualTo(1));
@@ -174,7 +176,7 @@ namespace ECS.Test.Unit
         {
             // Setup the stub with desired response
             _fakeTempSensor.Temp = 27;
-            _uut.Regulate();
+            _uutFakes.Regulate();
 
             // Assert on the mock - was the heater called correctly
             Assert.That(_fakeHeater.TurnOffCalledTimes, Is.EqualTo(1));
@@ -185,7 +187,7 @@ namespace ECS.Test.Unit
         {
             // Setup the stub with desired response
             _fakeTempSensor.Temp = 27;
-            _uut.Regulate();
+            _uutFakes.Regulate();
 
             // Assert on the mock - was the window called correctly
             Assert.That(_fakeWindow.CloseCalledTimes, Is.EqualTo(1));
@@ -200,7 +202,7 @@ namespace ECS.Test.Unit
         {
             // Setup the stub with desired response
             _fakeTempSensor.Temp = 27;
-            _uut.Regulate();
+            _uutFakes.Regulate();
 
             // Assert on the mock - was the heater called correctly
             Assert.That(_fakeHeater.TurnOffCalledTimes, Is.EqualTo(1));
@@ -211,7 +213,7 @@ namespace ECS.Test.Unit
         {
             // Setup the stub with desired response
             _fakeTempSensor.Temp = 29;
-            _uut.Regulate();
+            _uutFakes.Regulate();
 
             // Assert on the mock - was the window called correctly
             Assert.That(_fakeWindow.OpenCalledTimes, Is.EqualTo(1));
