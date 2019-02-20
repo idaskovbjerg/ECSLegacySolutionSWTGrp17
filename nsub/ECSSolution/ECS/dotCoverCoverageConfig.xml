@@ -28,6 +28,14 @@
         <ClassMask>ECS.Test.Unit.FakeTempSensor</ClassMask>
         <FunctionMask>*</FunctionMask>
       </FilterEntry>
+      <FilterEntry>
+        <ClassMask>ECS.Test.Unit.FakeHeater</ClassMask>
+        <FunctionMask>*</FunctionMask>
+      </FilterEntry>
+      <FilterEntry>
+        <ClassMask>ECS.Test.Unit.FakeWindow</ClassMask>
+        <FunctionMask>*</FunctionMask>
+      </FilterEntry>
     </ExcludeFilters>
   </Filters>
   <!-- Attribute filters. It's possible to use asterisks as wildcard symbols.
