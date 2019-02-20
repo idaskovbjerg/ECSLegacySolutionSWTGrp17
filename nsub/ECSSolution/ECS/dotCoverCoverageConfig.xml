@@ -26,7 +26,7 @@
       </FilterEntry>
       <FilterEntry>
         <ModuleMask>ECS.Test.Unit</ModuleMask>
-        <ClassMask>Fakes.cs</ClassMask>
+        <ClassMask>FakeTempSensor</ClassMask>
         <FunctionMask>*</FunctionMask>
       </FilterEntry>
     </ExcludeFilters>
