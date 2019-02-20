@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECS", "ECS\ECS.csproj", "{9FC2E57A-E76D-41DE-9921-0D143B8CDCD9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECS.Test.Unit", "ECS.Test.Unit\ECS.Test.Unit.csproj", "{1CD3E749-F03F-43E4-8D0C-821BC04E01C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9EED0142-8E83-4C0D-B29F-8D8EED0731F9}"
+	ProjectSection(SolutionItems) = preProject
+		dotCoverCoverageConfig.xml = dotCoverCoverageConfig.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77380FD6-68D0-48AC-945F-021A3A371B8E}
 	EndGlobalSection
 EndGlobal
