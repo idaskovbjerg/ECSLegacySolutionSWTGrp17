@@ -72,7 +72,11 @@ namespace ECS.Test.Unit
         {
             // Check that it throws when upper is illegal
             // First parameter is a lambda expression, implicitly acting
-            Assert.That(() => { _uut.UpperTemperatureThreshold = 24; }, Throws.TypeOf<ArgumentException>());
+            //Assert.That(() => { _uut.UpperTemperatureThreshold = 24; }, Throws.TypeOf<ArgumentException>());
+            //Assert.That(() => { _uut.UpperTemperatureThreshold = 24; }, Throws.TypeOf<ArgumentException>());
+            //_uut.When(x => { _uut.UpperTemperatureThreshold = 24; }).Do(x=>throw new ArgumentException());
+            //Assert.Throws<ArgumentException>(()=>_uut.UpperTemperatureThreshold = 24);
+            Assert.Throws<ArgumentException>(() => { _uut.UpperTemperatureThreshold = 24; });
         }
         [Test]
         public void Thresholds_InvalidLowerTemperatureThresholdSet_ArgumentExceptionThrown()
