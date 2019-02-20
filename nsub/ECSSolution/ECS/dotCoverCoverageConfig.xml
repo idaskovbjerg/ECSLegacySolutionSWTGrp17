@@ -25,8 +25,7 @@
         <FunctionMask>*</FunctionMask>
       </FilterEntry>
       <FilterEntry>
-        <ModuleMask>ECS.Test.Unit</ModuleMask>
-        <ClassMask>FakeTempSensor</ClassMask>
+        <ClassMask>ECS.Test.Unit.Fakes*</ClassMask>
         <FunctionMask>*</FunctionMask>
       </FilterEntry>
     </ExcludeFilters>
